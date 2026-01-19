@@ -24,6 +24,7 @@ _site/
 
 # Other files and folders
 .settings/
+~$*.docx
 
 # Executables
 *.swf
