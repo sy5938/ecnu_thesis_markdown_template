@@ -1,0 +1,17 @@
+---
+title: "论文题目（请在 `tex/preamble.tex` 里同步更新封面宏）"
+lang: zh
+number-sections: false
+---
+
+# 摘要
+
+在此撰写中文摘要（建议按学院要求调整格式与关键词）。
+
+**关键词：** 关键词1；关键词2；关键词3
+
+# Abstract
+
+Write English abstract here.
+
+**Keywords:** keyword1; keyword2; keyword3

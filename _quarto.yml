@@ -1,0 +1,42 @@
+project:
+  type: book
+  resources:
+    - tex/**
+    - fig/**
+    - resources/**
+    - GBT7714-2005.bst
+    - GBT7714-2005NLang.bst
+    - references.bib
+
+book:
+  title: "华东师范大学学位论文（Quarto）"
+  author: "姓名"
+  date: last-modified
+  chapters:
+    - index.qmd
+    - chapters/chapter01.qmd
+    - chapters/chapter02.qmd
+    - chapters/chapter03.qmd
+    - chapters/chapter04.qmd
+    - chapters/chapter05.qmd
+
+lang: zh
+bibliography: references.bib
+
+format:
+  pdf:
+    pdf-engine: xelatex
+    documentclass: ctexbook
+    classoption: [12pt, a4paper, fancyhdr, openany, oneside]
+    title-block-style: none
+    toc: false
+    number-sections: true
+    colorlinks: true
+    cite-method: natbib
+    biblio-style: GBT7714-2005
+    include-in-header:
+      - tex/preamble.tex
+    include-before-body: tex/before-body.tex
+    include-after-body: tex/after-body.tex
+    keep-tex: true
+    fig-pos: "htbp"

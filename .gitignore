@@ -4,6 +4,24 @@ bin-release/
 [Oo]bj/
 [Bb]in/
 
+# Quarto
+_book/
+_site/
+.quarto/
+/build/
+/*.tex
+*.log
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.lof
+*.lot
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+
 # Other files and folders
 .settings/
 

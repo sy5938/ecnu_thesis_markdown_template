@@ -1,0 +1,48 @@
+% ECNU 模板核心设置（供 Quarto PDF 使用）
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{fontspec}
+
+% 模板字号宏（封面与部分页会用到）
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}
+
+% 列表间距（与模板保持接近）
+\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+
+% 图表标题分隔符：图 1.1 标题（空格）
+\newcommand{\loflabel}{图}
+\newcommand{\lotlabel}{表}
+\captionsetup[table]{labelsep=quad}
+\captionsetup[figure]{labelsep=quad}
+
+% 页眉（与模板保持接近）
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[CO,CE]{\small 华东师范大学硕士专业学位论文}
+\renewcommand{\headrulewidth}{1pt}
+
+% 目录样式（与模板保持接近）
+\dottedcontents{chapter}[1.5cm]{\zihao{-4}\heiti}{3.8em}{9.5pt}
+\dottedcontents{section}[1.5cm]{\zihao{-4}\heiti}{2.8em}{9.5pt}
+
+% 英文字体：优先 Times New Roman，不存在则回退
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+
+% 封面/声明页宏（请按需修改）
+\def\thesisTitle{这里定义标题}
+\def\thesisTitleNoWrap{这里还是标题，不换行的标题，用于原创性声明}
+\def\thesisETitle{This is English Title}
