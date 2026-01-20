@@ -12,25 +12,59 @@
 
 在此撰写结果。
 
-如 @fig-mtcars 与 @tbl-mtcars 所示，可直观查看 mtcars 数据的关系与摘要。
+如图 \ref{fig-mtcars} 与表 \ref{tbl-mtcars} 所示，可直观查看 mtcars 数据的关系与摘要。
 
 ```{r}
-#| label: fig-mtcars
-#| fig-cap: "mtcars 数据的 mpg 与 wt 关系（ggplot2）"
+#| label: fig-mtcars-gen
 #| echo: false
 #| message: false
 #| warning: false
+#| results: hide
 library(ggplot2)
-ggplot(mtcars, aes(x = wt, y = mpg)) +
+p <- ggplot(mtcars, aes(x = wt, y = mpg)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
+input_path <- knitr::current_input()
+root_dir <- normalizePath(file.path(dirname(input_path), ".."))
+fig_dir <- file.path(root_dir, "fig")
+if (!dir.exists(fig_dir)) dir.create(fig_dir, recursive = TRUE)
+ggsave(file.path(fig_dir, "mtcars-ggplot2.pdf"), p, width = 5.5, height = 3.8)
+```
+
+```{=latex}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.75\linewidth]{fig/mtcars-ggplot2.pdf}
+\bicaption{mtcars 数据的 mpg 与 wt 关系}{MTCARS: mpg vs wt}
+\label{fig-mtcars}
+\end{figure}
 ```
 
 ```{r}
-#| label: tbl-mtcars
-#| tbl-cap: "mtcars 数据前 6 行（kable）"
+#| label: mtcars-table-gen
 #| echo: false
-knitr::kable(head(mtcars, 6))
+#| message: false
+#| warning: false
+#| results: hide
+input_path <- knitr::current_input()
+root_dir <- normalizePath(file.path(dirname(input_path), ".."))
+tex_dir <- file.path(root_dir, "tex", "generated")
+if (!dir.exists(tex_dir)) dir.create(tex_dir, recursive = TRUE)
+tbl_path <- file.path(tex_dir, "mtcars-table.tex")
+tbl <- knitr::kable(head(mtcars, 6), format = "latex", booktabs = TRUE)
+lines <- c(
+  "\\begin{table}[htbp]",
+  "\\centering",
+  "\\bicaption{mtcars 数据前 6 行}{First 6 rows of mtcars}",
+  "\\label{tbl-mtcars}",
+  tbl,
+  "\\end{table}"
+)
+writeLines(lines, tbl_path)
+```
+
+```{=latex}
+\input{tex/generated/mtcars-table.tex}
 ```
 
 ## 讨论

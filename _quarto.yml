@@ -9,8 +9,8 @@ project:
     - references.bib
 
 book:
-  title: "华东师范大学学位论文（Quarto）"
-  author: "姓名"
+  title: "ECNU_thesis_sywu"
+  author: "伍斯宇"
   date: last-modified
   chapters:
     - index.qmd
