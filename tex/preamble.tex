@@ -6,6 +6,20 @@
 \usepackage{titletoc}
 \usepackage{enumitem}
 \usepackage{fontspec}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% 版芯控制（参考 ECNU LaTeX 模板）
+\setlength{\oddsidemargin}{0.57cm}
+\setlength{\evensidemargin}{\oddsidemargin}
+\voffset-6mm
+\textwidth=150mm
+\textheight=230mm
+\headwidth=150mm
+
+% 段落缩进与段前后距（避免 parskip 拉大间距）
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
 
 % 模板字号宏（封面与部分页会用到）
 \newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}
@@ -29,6 +43,14 @@
 \captionsetup[table]{labelsep=quad}
 \captionsetup[figure]{labelsep=quad}
 
+% 图表编号按章节，并用 1-1 形式
+\makeatletter
+\@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter}
+\makeatother
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+
 % 页眉（与模板保持接近）
 \pagestyle{fancy}
 \fancyhead{}
@@ -36,11 +58,38 @@
 \renewcommand{\headrulewidth}{1pt}
 
 % 目录样式（与模板保持接近）
-\dottedcontents{chapter}[1.5cm]{\zihao{-4}\heiti}{3.8em}{9.5pt}
-\dottedcontents{section}[1.5cm]{\zihao{-4}\heiti}{2.8em}{9.5pt}
+\dottedcontents{chapter}[1.5cm]{\xiaosi\heiti}{3.8em}{9.5pt}
+\dottedcontents{section}[1.5cm]{\xiaosi\heiti}{2.8em}{9.5pt}
+
+% 章节标题前后间距（参考 ECNU LaTeX 模板）
+\CTEXsetup[beforeskip = 0pt]{chapter}
+\CTEXsetup[afterskip = 20pt]{chapter}
 
 % 英文字体：优先 Times New Roman，不存在则回退
 \IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+
+% 链接颜色与引文样式在文档开始时统一覆盖
+\AtBeginDocument{
+  \makeatletter
+  \expandafter\def\csname bibstyle@GBT7714-2005\endcsname{\NAT@numbers}
+  \expandafter\def\csname bibstyle@GBT7714-2005NLang\endcsname{\NAT@numbers}
+  \makeatother
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black
+  }
+  \setcitestyle{authoryear}
+}
+
+% 让 plain 样式继承 fancy 页眉
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+
+% 禁用 Quarto 默认标题页，避免封面前多出一页
+\renewcommand{\maketitle}{}
 
 % 封面/声明页宏（请按需修改）
 \def\thesisTitle{这里定义标题}

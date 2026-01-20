@@ -4,6 +4,17 @@
 
 在此撰写研究背景与意义。
 
+如 @fig-ecnu-logo 与 @tbl-sample 所示，研究对象与数据结构示意清晰，有助于说明研究设计的关键要素。相关方法与背景可参考文献[@zhao-etal-2020-ecnu; @knuth1984texbook]。
+
+![ECNU 标识示意](../fig/ecnulogo.png){#fig-ecnu-logo width=60%}
+
+| 指标 | 说明 |
+| --- | --- |
+| A | 示例指标 A |
+| B | 示例指标 B |
+
+: 示例数据结构 {#tbl-sample}
+
 ## 研究现状
 
 在此撰写研究现状。

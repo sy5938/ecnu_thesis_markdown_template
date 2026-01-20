@@ -12,6 +12,27 @@
 
 在此撰写结果。
 
+如 @fig-mtcars 与 @tbl-mtcars 所示，可直观查看 mtcars 数据的关系与摘要。
+
+```{r}
+#| label: fig-mtcars
+#| fig-cap: "mtcars 数据的 mpg 与 wt 关系（ggplot2）"
+#| echo: false
+#| message: false
+#| warning: false
+library(ggplot2)
+ggplot(mtcars, aes(x = wt, y = mpg)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+```{r}
+#| label: tbl-mtcars
+#| tbl-cap: "mtcars 数据前 6 行（kable）"
+#| echo: false
+knitr::kable(head(mtcars, 6))
+```
+
 ## 讨论
 
 在此撰写讨论。

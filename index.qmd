@@ -1,17 +1,41 @@
 ---
-title: "论文题目（请在 `tex/preamble.tex` 里同步更新封面宏）"
 lang: zh
-number-sections: false
 ---
 
-# 摘要
+```{=latex}
+\pagenumbering{roman}
+```
+
+# 摘要 {.unnumbered}
 
 在此撰写中文摘要（建议按学院要求调整格式与关键词）。
 
 **关键词：** 关键词1；关键词2；关键词3
 
-# Abstract
+# Abstract {.unnumbered}
 
 Write English abstract here.
 
 **Keywords:** keyword1; keyword2; keyword3
+
+```{=latex}
+\newpage
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+\renewcommand{\listfigurename}{图目录}
+\renewcommand{\listtablename}{表目录}
+
+\renewcommand{\numberline}[1]{\loflabel~#1\hspace*{1em}}
+\listoffigures
+\addcontentsline{toc}{chapter}{图目录}
+
+\renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}
+\listoftables
+\addcontentsline{toc}{chapter}{表目录}
+
+\newpage
+\pagenumbering{arabic}
+\setcounter{chapter}{0}
+\pagestyle{fancy}
+```

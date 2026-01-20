@@ -33,7 +33,8 @@ format:
     number-sections: true
     colorlinks: true
     cite-method: natbib
-    biblio-style: GBT7714-2005
+    natbiboptions: "authoryear,round"
+    biblio-style: plainnat
     include-in-header:
       - tex/preamble.tex
     include-before-body: tex/before-body.tex
