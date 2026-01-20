@@ -31,11 +31,17 @@
 
 % 版芯控制（参考 ECNU LaTeX 模板）
 \setlength{\oddsidemargin}{0.57cm}
-\setlength{\evensidemargin}{\oddsidemargin}
 \voffset-6mm
 \textwidth=150mm
 \textheight=230mm
 \headwidth=150mm
+
+% 打印模式下镜像版心（偶数页左右边距对调）
+\ifdefined\PrintMode
+  \setlength{\evensidemargin}{\dimexpr\paperwidth-\textwidth-2in-\oddsidemargin\relax}
+\else
+  \setlength{\evensidemargin}{\oddsidemargin}
+\fi
 
 % 段落缩进与段前后距（避免 parskip 拉大间距）
 \setlength{\parindent}{2em}
