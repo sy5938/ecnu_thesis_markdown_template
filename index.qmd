@@ -19,7 +19,7 @@ Write English abstract here.
 **Keywords:** keyword1; keyword2; keyword3
 
 ```{=latex}
-\newpage
+\ClearPageStyle
 \setcounter{tocdepth}{2}
 \tableofcontents
 
@@ -34,7 +34,7 @@ Write English abstract here.
 \listoftables
 \addcontentsline{toc}{chapter}{表目录}
 
-\newpage
+\ClearPageStyle
 \pagenumbering{arabic}
 \setcounter{chapter}{0}
 \pagestyle{fancy}

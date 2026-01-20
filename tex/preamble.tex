@@ -13,6 +13,22 @@
 \usepackage{geometry}
 \usepackage{hyperref}
 
+% 打印模式开关（默认关闭）
+% 需要打印时取消下一行注释即可：
+% \def\PrintMode{}
+\ifdefined\PrintMode
+  \def\SideMode{twoside}
+  \def\ClearPageStyle{\cleardoublepage}
+  \makeatletter\@twosidetrue\makeatother
+\else
+  \def\SideMode{oneside}
+  \def\ClearPageStyle{\clearpage}
+  \makeatletter
+  \@twosidefalse
+  \let\cleardoublepage\clearpage
+  \makeatother
+\fi
+
 % 版芯控制（参考 ECNU LaTeX 模板）
 \setlength{\oddsidemargin}{0.57cm}
 \setlength{\evensidemargin}{\oddsidemargin}
@@ -98,4 +114,4 @@
 % 封面/声明页宏（请按需修改）
 \def\thesisTitle{这里定义标题}
 \def\thesisTitleNoWrap{这里还是标题，不换行的标题，用于原创性声明}
-\def\thesisETitle{This is English Title}
+\def\thesisETitle{Title}

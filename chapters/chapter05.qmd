@@ -41,31 +41,31 @@ ggsave(file.path(fig_dir, "mtcars-ggplot2.pdf"), p, width = 5.5, height = 3.8)
 ```
 
 ```{r}
-#| label: mtcars-table-gen
 #| echo: false
 #| message: false
 #| warning: false
-#| results: hide
-input_path <- knitr::current_input()
-root_dir <- normalizePath(file.path(dirname(input_path), ".."))
-tex_dir <- file.path(root_dir, "tex", "generated")
-if (!dir.exists(tex_dir)) dir.create(tex_dir, recursive = TRUE)
-tbl_path <- file.path(tex_dir, "mtcars-table.tex")
+#| results: asis
 tbl <- knitr::kable(head(mtcars, 6), format = "latex", booktabs = TRUE)
-lines <- c(
-  "\\begin{table}[htbp]",
-  "\\centering",
-  "\\bicaption{mtcars 数据前 6 行}{First 6 rows of mtcars}",
-  "\\label{tbl-mtcars}",
-  tbl,
-  "\\end{table}"
-)
-writeLines(lines, tbl_path)
+cat("\\begin{table}[htbp]\n\\centering\n")
+cat("\\bicaption{mtcars 数据前 6 行}{First 6 rows of mtcars}\n")
+cat("\\label{tbl-mtcars}\n")
+cat(tbl)
+cat("\n\\end{table}\n")
 ```
 
-```{=latex}
-\input{tex/generated/mtcars-table.tex}
+```{r}
+#| echo: false
+#| label: tbl-mtcars-pandoc
+#| tbl-cap: "mtcars 数据后 6 行（kable）"
+#| message: false
+#| warning: false
+tbl <- knitr::kable(tail(mtcars, 6), format = "latex", booktabs = TRUE)
+tbl
 ```
+
+这里随意引用一个图标，一开始写的时候应该都是这么简单的引用，最后写完，再输出为pdf。这里简单的引用测试 @tbl-mtcars-pandoc。
+
+
 
 ## 讨论
 
