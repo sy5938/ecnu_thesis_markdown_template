@@ -1,0 +1,16 @@
+# 附图 {.unnumbered}
+
+附图章节示例，双语图例如下。
+
+```{=latex}
+% 附图编号示例：S1, S2... 如需按章节编号，可改为 3-\arabic{figure} 等
+\renewcommand{\figurename}{附图}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S 1-\arabic{figure}}
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\linewidth]{fig/ecnu_logo.png}
+\bicaption{华东师范大学校徽（示例）}{ECNU Logo (Example)}
+\label{fig-ecnu-logo-appendix}
+\end{figure}
+```

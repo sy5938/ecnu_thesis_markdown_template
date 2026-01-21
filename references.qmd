@@ -1,4 +1,13 @@
-# 参考文献
+# 参考文献 {.unnumbered}
 
-本章由引用自动生成（`references.bib`）。
-
+```{=latex}
+\setlength{\bibsep}{0.0ex}
+\newcommand{\bibliographynoop}[1]{}
+\let\oldbibliography\bibliography
+\renewcommand{\bibliography}[1]{%
+  \oldbibliography{#1}%
+  \global\let\bibliography\bibliographynoop
+}
+\renewcommand{\bibsection}{}
+\bibliography{references.bib}
+```

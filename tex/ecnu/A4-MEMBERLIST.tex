@@ -8,16 +8,15 @@ $$\\ \\ \\ $$
 \vskip 10mm
 
 \begin{center}
-    {\large
-        \begin{tabular}{| p{20mm}| p{45mm}| p{45mm}| p{25mm}|}\hline
-            \vfill\hfill{\heiti 姓名}\hspace*{\fill} & \vfill\hfill{\heiti 职称}\hspace*{\fill}      &
-            \vfill\hfill{\heiti 单位}\hspace*{\fill} & \vfill\hfill {\heiti 备注} \hspace*{\fill}                                                                                             \\\hline
-            \vfill\hfill{xxx}\hspace*{\fill}        & \vfill\hfill{xxx}\hspace*{\fill} & \vfill\hfill{xxx}\hspace*{\fill}   & \vfill\hfill {\heiti 主席 }\hspace*{\fill} \\\hline
-            \vfill\hfill{xxx}\hspace*{\fill}      & \vfill\hfill{xxx}\hspace*{\fill}           & \vfill\hfill{华东师范大学}\hspace*{\fill} & \vfill{\heiti }                            \\\hline
-            \vfill\hfill{xxx}\hspace*{\fill}        & \vfill\hfill{xxx}\hspace*{\fill}           & \vfill\hfill{华东师范大学}\hspace*{\fill} & \vfill{\heiti }                            \\\hline
-            \vfill\hfill{}\hspace*{\fill}            & \vfill\hfill{}\hspace*{\fill}                 & \vfill\hfill{}\hspace*{\fill}             & \vfill{\heiti }                            \\\hline
-            \vfill\hfill{}\hspace*{\fill}            & \vfill\hfill{}\hspace*{\fill}                 & \vfill\hfill{}\hspace*{\fill}             & \vfill{\heiti }                            \\\hline
-            \vfill\hfill{}\hspace*{\fill}            & \vfill\hfill{}\hspace*{\fill}                 & \vfill\hfill{}\hspace*{\fill}             & \vfill{\heiti }                            \\\hline
-        \end{tabular}
-    }
+  \newcommand{\rowheight}{\rule[-0.565cm]{0pt}{1.13cm}}
+  \newcolumntype{C}[1]{>{\centering\arraybackslash\rowheight}m{#1}}
+  \begin{tabular}{|C{22mm}|C{25mm}|C{40mm}|C{20mm}|C{20mm}|}\hline
+    {\heiti 姓名} & {\heiti 职称} & {\heiti 单位} & {\heiti 签名} & {\heiti 备注} \\\hline
+    xxx & xxx & xxx & ~ & {\heiti 主席} \\\hline
+    xxx & xxx & 华东师范大学 & ~ & ~ \\\hline
+    xxx & xxx & 华东师范大学 & ~ & ~ \\\hline
+    ~ & ~ & ~ & ~ & ~ \\\hline
+    ~ & ~ & ~ & ~ & ~ \\\hline
+    ~ & ~ & ~ & ~ & ~ \\\hline
+  \end{tabular}
 \end{center}

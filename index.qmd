@@ -4,6 +4,7 @@ lang: zh
 
 ```{=latex}
 \pagenumbering{roman}
+\pagestyle{fancy}
 ```
 
 # 摘要 {.unnumbered}
@@ -21,6 +22,7 @@ Write English abstract here.
 ```{=latex}
 \ClearPageStyle
 \setcounter{tocdepth}{2}
+\markboth{目录}{目录}
 \tableofcontents
 
 \renewcommand{\listfigurename}{图目录}

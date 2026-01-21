@@ -7,9 +7,14 @@
 \usepackage{titletoc}
 \usepackage{enumitem}
 \usepackage{fontspec}
+\usepackage{amssymb}
+\usepackage{etoolbox}
 
 % 仅在目录中保留中文图表条目
 \captionsetup[bi-second]{list=off}
+% 英文双语标题在不同环境下使用 Figure / Table
+\AtBeginEnvironment{figure}{\captionsetup[bi-second]{name=Figure}}
+\AtBeginEnvironment{table}{\captionsetup[bi-second]{name=Table}}
 \usepackage{geometry}
 \usepackage{hyperref}
 
@@ -80,8 +85,11 @@
 % 页眉（与模板保持接近）
 \pagestyle{fancy}
 \fancyhead{}
-\fancyhead[CO,CE]{\small 华东师范大学硕士专业学位论文}
+\setlength{\headheight}{24pt}
+\fancyhead[L]{\small\parbox[t]{0.45\textwidth}{\raggedright 华东师范大学20XX届硕士学位论文}}
+\fancyhead[R]{\small\parbox[t]{0.5\textwidth}{\raggedleft \leftmark}}
 \renewcommand{\headrulewidth}{1pt}
+\renewcommand{\chaptermark}[1]{\markboth{第\thechapter 章\ #1}{}}
 
 % 目录样式（与模板保持接近）
 \dottedcontents{chapter}[1.5cm]{\xiaosi\heiti}{3.8em}{9.5pt}
@@ -107,6 +115,7 @@
     citecolor=black
   }
   \setcitestyle{authoryear}
+  \renewcommand{\bibsection}{\chapter*{\bibname}}
 }
 
 % 让 plain 样式继承 fancy 页眉

@@ -19,9 +19,13 @@ book:
     - chapters/chapter03.qmd
     - chapters/chapter04.qmd
     - chapters/chapter05.qmd
+    - references.qmd
+    - chapters/appendix-figures.qmd
+    - chapters/appendix-tables.qmd
 
 lang: zh
 bibliography: references.bib
+suppress-bibliography: true
 
 format:
   pdf:
