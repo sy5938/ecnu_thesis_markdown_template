@@ -9,8 +9,8 @@ project:
     - references.bib
 
 book:
-  title: "ECNU_thesis_sywu"
-  author: "伍斯宇"
+  title: "ECNU_thesis_xxx"
+  author: "xxx"
   date: last-modified
   chapters:
     - index.qmd
