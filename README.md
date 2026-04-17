@@ -1,4 +1,4 @@
-# sywu-thesis
+# thesis-md
 
 本仓库用于在 Quarto 中直接写作与编译（`quarto render`），并复用 ECNU LaTeX 模板的封面/声明页与参考文献样式。
 
