@@ -1,0 +1,153 @@
+% ECNU 模板核心设置（供 Quarto PDF 使用）
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{caption}
+\usepackage{bicaption}
+\usepackage{titletoc}
+\usepackage{enumitem}
+\usepackage{fontspec}
+\usepackage{amssymb}
+\usepackage{etoolbox}
+
+% 仅在目录中保留中文图表条目
+\captionsetup[bi-second]{list=off}
+% 英文双语标题在不同环境下使用 Figure / Table
+\AtBeginEnvironment{figure}{\captionsetup[bi-second]{name=Figure}}
+\AtBeginEnvironment{table}{\captionsetup[bi-second]{name=Table}}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% 打印模式开关（默认关闭）
+% 需要打印时取消下一行注释即可：
+% \def\PrintMode{}
+\ifdefined\PrintMode
+  \def\SideMode{twoside}
+  \def\ClearPageStyle{\cleardoublepage}
+  \makeatletter\@twosidetrue\makeatother
+\else
+  \def\SideMode{oneside}
+  \def\ClearPageStyle{\clearpage}
+  \makeatletter
+  \@twosidefalse
+  \let\cleardoublepage\clearpage
+  \makeatother
+\fi
+
+% 版芯控制（参考 ECNU LaTeX 模板）
+\setlength{\oddsidemargin}{0.57cm}
+\voffset-6mm
+\textwidth=150mm
+\textheight=230mm
+\headwidth=150mm
+
+% 打印模式下镜像版心（偶数页左右边距对调）
+\ifdefined\PrintMode
+  \setlength{\evensidemargin}{\dimexpr\paperwidth-\textwidth-2in-\oddsidemargin\relax}
+\else
+  \setlength{\evensidemargin}{\oddsidemargin}
+\fi
+
+% 段落缩进与段前后距（避免 parskip 拉大间距）
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0pt}
+
+% 模板字号宏（封面与部分页会用到）
+\newcommand{\yihao}{\fontsize{26pt}{36pt}\selectfont}
+\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}
+\newcommand{\xiaoer}{\fontsize{18pt}{18pt}\selectfont}
+\newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}
+\newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{21pt}\selectfont}
+\newcommand{\banxiaosi}{\fontsize{13pt}{19.5pt}\selectfont}
+\newcommand{\xiaosi}{\fontsize{12pt}{18pt}\selectfont}
+\newcommand{\dawuhao}{\fontsize{11pt}{11pt}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{15.75pt}\selectfont}
+
+% 列表间距（与模板保持接近）
+\setenumerate{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+\setitemize{itemsep=0pt,partopsep=0pt,parsep=\parskip,topsep=0pt}
+
+% 图表标题分隔符：图 1.1 标题（空格）
+\newcommand{\loflabel}{图}
+\newcommand{\lotlabel}{表}
+\captionsetup[table]{labelsep=quad}
+\captionsetup[figure]{labelsep=quad}
+
+% 图表编号按章节，并用 1-1 形式
+\makeatletter
+\@addtoreset{figure}{chapter}
+\@addtoreset{table}{chapter}
+\@addtoreset{equation}{chapter}
+\makeatother
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+% 公式编号按章节，形如 (3-1)；equation 环境本身居中排版，编号自动顶右
+\renewcommand{\theequation}{\thechapter-\arabic{equation}}
+
+% 页眉（与模板保持接近）
+\pagestyle{fancy}
+\fancyhead{}
+\setlength{\headheight}{24pt}
+\fancyhead[L]{\small\parbox[t]{0.45\textwidth}{\raggedright 华东师范大学20XX届硕士学位论文}}
+\fancyhead[R]{\small\parbox[t]{0.5\textwidth}{\raggedleft \leftmark}}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\chaptermark}[1]{\markboth{第\thechapter 章\ #1}{}}
+
+% macOS 下 ctex 的 \heiti 默认映射到「Heiti SC Light」（细体），
+% 明显比 Windows 的黑体（SimHei，本身即为粗壮的单一字重）纤细，
+% 导致目录/标题的黑体效果不明显。改用「Heiti SC Medium」作为 \heiti 的默认字重。
+\IfFontExistsTF{Heiti SC}{\setCJKfamilyfont{zhhei}{Heiti SC Medium}}{}
+
+% 目录样式（使用 ctex 的 \zihao 确保中文字号生效）
+% 一级目录：黑体，四号；二级及以下：黑体，小四
+% \dottedcontents 最后一个参数是 \titlerule* 里每个点号重复占用的宽度，
+% 数值越大点号间距越疏（此前 9.5pt 显得像拉长的虚线），改小以获得紧密的点线效果
+\dottedcontents{chapter}[1.5cm]{\addvspace{6pt}\zihao{4}\heiti}{3.8em}{4pt}
+\dottedcontents{section}[1.5cm]{\zihao{-4}\heiti}{2.8em}{4pt}
+\dottedcontents{subsection}[1.5cm]{\zihao{-4}\heiti}{3.8em}{4pt}
+
+% 图表目录样式：宋体，小四
+\dottedcontents{figure}[1.5cm]{\zihao{-4}}{5em}{4pt}
+\dottedcontents{table}[1.5cm]{\zihao{-4}}{5em}{4pt}
+
+% 去除图表目录中不同章节间的额外间距
+\CTEXsetup[lofskip=0pt, lotskip=0pt]{chapter}
+
+% 章节标题前后间距（参考 ECNU LaTeX 模板）
+\CTEXsetup[beforeskip = 0pt]{chapter}
+\CTEXsetup[afterskip = 20pt]{chapter}
+
+% 英文字体：优先 Times New Roman，不存在则回退
+\IfFontExistsTF{Times New Roman}{\setmainfont{Times New Roman}}{\setmainfont{TeX Gyre Termes}}
+
+% 链接颜色与引文样式在文档开始时统一覆盖
+\AtBeginDocument{
+  \makeatletter
+  \expandafter\def\csname bibstyle@GBT7714-2005\endcsname{\NAT@numbers}
+  \expandafter\def\csname bibstyle@GBT7714-2005NLang\endcsname{\NAT@numbers}
+  \makeatother
+  \hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=black,
+    citecolor=black,
+    bookmarksnumbered=true
+  }
+  \setcitestyle{authoryear}
+  \renewcommand{\bibsection}{\chapter*{\bibname}}
+  \setlength{\bibhang}{2em}
+}
+
+% 让 plain 样式继承 fancy 页眉
+\makeatletter
+\let\ps@plain\ps@fancy
+\makeatother
+
+% 禁用 Quarto 默认标题页，避免封面前多出一页
+\renewcommand{\maketitle}{}
+
+% 封面/声明页宏（请按需修改）
+\def\thesisTitle{这里定义标题}
+\def\thesisTitleNoWrap{这里还是标题，不换行的标题，用于原创性声明}
+\def\thesisETitle{Title}

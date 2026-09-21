@@ -1,0 +1,55 @@
+---
+lang: zh
+---
+
+```{=latex}
+\pagenumbering{roman}
+\pagestyle{fancy}
+```
+
+# 摘要 {.unnumbered}
+
+在此撰写中文摘要（建议按学院要求调整格式与关键词）。
+
+**关键词：** 关键词1；关键词2；关键词3
+
+# ABSTRACT {.unnumbered}
+
+Write English abstract here.
+
+**Keywords:** keyword1; keyword2; keyword3
+
+```{=latex}
+\ClearPageStyle
+\setcounter{tocdepth}{2}
+
+% 目录标题：黑体三号加粗居中，段前24磅，段后18磅
+\CTEXsetup[beforeskip=24pt, afterskip=18pt]{chapter}
+\setlength{\baselineskip}{25pt}
+\markboth{目录}{目录}
+\pdfbookmark[0]{目录}{toc}
+\tableofcontents
+
+% 图目录标题：段前25磅，段后18磅
+\CTEXsetup[beforeskip=25pt, afterskip=18pt]{chapter}
+\renewcommand{\listfigurename}{图目录}
+\renewcommand{\listtablename}{表目录}
+
+\renewcommand{\numberline}[1]{\loflabel~#1\hspace*{1em}}
+\phantomsection
+\addcontentsline{toc}{chapter}{图目录}
+\listoffigures
+
+\renewcommand{\numberline}[1]{\lotlabel~#1\hspace*{1em}}
+\phantomsection
+\addcontentsline{toc}{chapter}{表目录}
+\listoftables
+
+% 恢复正文章节间距
+\CTEXsetup[beforeskip=0pt, afterskip=20pt]{chapter}
+
+\ClearPageStyle
+\pagenumbering{arabic}
+\setcounter{chapter}{0}
+\pagestyle{fancy}
+```
