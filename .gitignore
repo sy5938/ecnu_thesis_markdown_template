@@ -9,7 +9,13 @@ _book/
 _site/
 .quarto/
 /build/
-/*.tex
+master/_book/
+master/.quarto/
+doctoral/_book/
+doctoral/.quarto/
+# 各子项目渲染生成的顶层 .tex（keep-tex: true），不影响 tex/ 下的源文件
+master/*.tex
+doctoral/*.tex
 *.log
 *.aux
 *.bbl
@@ -25,6 +31,7 @@ _site/
 # Other files and folders
 .settings/
 ~$*.docx
+.DS_Store
 
 # Executables
 *.swf
