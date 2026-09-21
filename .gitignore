@@ -5,13 +5,16 @@ bin-release/
 [Bb]in/
 
 # Quarto
-_book/
+_book/*
+!_book/ECNU_thesis_xxx.pdf
 _site/
 .quarto/
 /build/
-master/_book/
+master/_book/*
+!master/_book/ECNU_thesis_xxx.pdf
 master/.quarto/
-doctoral/_book/
+doctoral/_book/*
+!doctoral/_book/ECNU_thesis_xxx.pdf
 doctoral/.quarto/
 # 各子项目渲染生成的顶层 .tex（keep-tex: true），不影响 tex/ 下的源文件
 master/*.tex
