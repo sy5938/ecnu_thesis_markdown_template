@@ -32,6 +32,7 @@ doctoral/*.tex
 *.synctex.gz
 
 # Other files and folders
+.serena/
 .settings/
 ~$*.docx
 .DS_Store
