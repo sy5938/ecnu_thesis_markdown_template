@@ -47,3 +47,5 @@ doctoral/*.tex
 # information for Eclipse / Flash Builder.
 
 /.quarto/
+
+**/*.quarto_ipynb

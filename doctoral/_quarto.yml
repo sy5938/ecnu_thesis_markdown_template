@@ -4,8 +4,6 @@ project:
     - tex/**
     - fig/**
     - resources/**
-    - GBT7714-2005.bst
-    - GBT7714-2005NLang.bst
     - references.bib
 
 book:

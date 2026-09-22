@@ -14,7 +14,7 @@
 
 渲染效果可直接查看仓库中的示例 PDF：[硕士版](master/_book/ECNU_thesis_xxx.pdf) | [博士版](doctoral/_book/ECNU_thesis_xxx.pdf)
 
-目前更新截止至 2026 年 9 月 21 日。因为学校说了句要有 AI 声明，我添加了书前页，顺便把一些小毛病的修复了一下。
+**当前版本：v1.0**（更新于 2026 年 9 月 22 日）
 
 
 ## 目录结构
@@ -37,7 +37,7 @@
 - `tex/after-body.tex`：正文结束、`\end{document}` 之前插入的内容——后置页
 - `tex/ecnu/`：封面、原创性声明、AI 工具使用声明、导师签字页等独立页面
 - `fig/`：校徽等图片资源
-- `GBT7714-2005*.bst`：国标顺序编码制参考文献样式
+- `references.bib` 顶部的 `@gbt7714bstctl` 条目：gbt7714 BST 格式控制（年份位置、标点风格等）
 
 > `include-before-body` / `include-after-body` 是 Quarto/Pandoc 的标准机制，分别对应 `\begin{document}` 之后、`\end{document}` 之前两个固定插入点，与 `index.qmd` 在 `book.chapters` 列表中的位置无关；调整 `before-body.tex`/`after-body.tex` 内 `\input` 的先后顺序即可控制前置页/后置页的排列顺序。
 
@@ -78,17 +78,30 @@
 - [Quarto](https://quarto.org/)
 - TeX Live（含 `ctex` 宏包）与 XeLaTeX，缺包时可用 `tlmgr install <package>` 补齐
 
-## 当前版本改动说明
+## v1.0 改动说明
 
-在硕士/博士双版本拆分的基础上，本版本重点修复了目录、图表目录与 PDF 书签的排版细节：
+### 封面与格式优化
+
+- **中文封面字段**：改为「培养单位 / 专业 / 研究方向 / 学位申请人 / 指导教师」，加粗、冒号对齐（`\makebox[5em][s]` + `\hfill`）
+- **英文封面字段**：改为四号加粗（`\sihao\bfseries`）
+- **硕士封面英文校名**：修复 xeCJK 吞空格导致的 "EastChinaNormalUniversity" 问题（改用 `\fontspec{Times New Roman}` 切换字体）
+
+### 参考文献
+
+- **年份位置**：通过 `@gbt7714bstctl` 控制条目设置 `CTL_year_before_title = {false}`，将年份从作者后移到期刊/出版者后，符合 ECNU 格式
+- **标点风格**：设置 `CTL_bib_punct = {half}`，统一使用半角（英文）标点
+- **旧版 BST 清理**：删除 `GBT7714-2005.bst` 和 `GBT7714-2005NLang.bst`，改用系统自带的 `gbt7714-author-year.bst`
+
+### 历史版本改动
+
+在硕士/博士双版本拆分的基础上，前一版本重点修复了目录、图表目录与 PDF 书签的排版细节：
 
 - **目录（TOC）层级区分**：一级条目（章）黑体四号、二级及以下（节/小节）黑体小四，一级条目前增加段前间距，使章节层级在视觉上更清晰；字号统一改用 ctex 原生的 `\zihao` 命令而非手写 `\fontsize`，避免中文字号不随设置变化的问题
-- **黑体粗细修复**：macOS 下 ctex 的 `\heiti` 默认映射到偏细的系统字体「Heiti SC Light」，明显比 Windows 黑体（SimHei）纤细；已改为「Heiti SC Medium」，目录、正文章节标题等所有黑体文本均受益
+- **黑体粗细修复**：优先将 ctex 的 `\heiti` 映射到官方参考 PDF 使用的「SimHei」；缺失时回退到「STHeiti」并设置 `AutoFakeBold=2`，最终回退到「Heiti SC Medium」。各分支显式设置 `Scale=1`，用于消除 ctex/fontspec 对黑体字体度量的额外缩放
+- **会议论文参考文献**：参考文献中出现的 `[C]//Proceedings...` 是 `gbt7714-author-year` 按 GB/T 7714 对 `@inproceedings` 条目生成的有意分隔符，并非 `.bib` 中重复输入的两个斜杠；无需修改 `.bib` 或 `.bst`
 - **目录点状引导线**：由稀疏的点线（点间距 9.5pt）改为紧密点线（4pt），贴近学校模板视觉效果
 - **图目录/表目录**：去除不同章节之间的多余间距；修复超链接跳转位置错误的问题
-- **PDF 书签（大纲）**：
-  - 目录标题补充书签锚点，"目录"会出现在 PDF 侧边栏中
-  - 开启 `bookmarksnumbered`，书签自动带上"第一章""1.1""1.2.1"等章节编号（前提是该级标题未标记 `{.unnumbered}`）
-- **公式编号**：新增按章节自动编号支持（如 `(3-1)`），计数器随 `\chapter` 自动重置，无需手动维护
+- **PDF 书签（大纲）**：目录标题补充书签锚点；开启 `bookmarksnumbered`，书签自动带上章节编号
+- **公式编号**：新增按章节自动编号支持（如 `(3-1)`），计数器随 `\chapter` 自动重置
 - **摘要标题**：英文摘要标题由 `Abstract` 改为大写 `ABSTRACT`
-- **`.gitignore`**：忽略各子项目渲染生成的顶层 `.tex`（`keep-tex: true` 产物）与 `.DS_Store`，不影响 `tex/` 目录下的模板源文件
+- **`.gitignore`**：忽略各子项目渲染生成的顶层 `.tex`（`keep-tex: true` 产物）与 `.DS_Store`

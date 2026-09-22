@@ -94,10 +94,19 @@
 \renewcommand{\headrulewidth}{1pt}
 \renewcommand{\chaptermark}[1]{\markboth{第\thechapter 章\ #1}{}}
 
-% macOS 下 ctex 的 \heiti 默认映射到「Heiti SC Light」（细体），
-% 明显比 Windows 的黑体（SimHei，本身即为粗壮的单一字重）纤细，
-% 导致目录/标题的黑体效果不明显。改用「Heiti SC Medium」作为 \heiti 的默认字重。
-\IfFontExistsTF{Heiti SC}{\setCJKfamilyfont{zhhei}{Heiti SC Medium}}{}
+% 官方参考 PDF 使用 SimHei；优先检测并使用 SimHei（其本身是单一粗黑体字重）。
+% 当前 macOS 未安装 SimHei 时，回退到 STHeiti，并用 AutoFakeBold=2 保证
+% \bfseries 下仍有足够的黑体粗度；若两者都不存在，最终回退到 Heiti SC Medium。
+% 各分支显式设置 Scale=1，消除 ctex/fontspec 对黑体字体度量的额外缩放。
+\IfFontExistsTF{SimHei}{
+  \setCJKfamilyfont{zhhei}[Scale=1]{SimHei}
+}{
+  \IfFontExistsTF{STHeiti}{
+    \setCJKfamilyfont{zhhei}[Scale=1,AutoFakeBold=2]{STHeiti}
+  }{
+    \IfFontExistsTF{Heiti SC}{\setCJKfamilyfont{zhhei}[Scale=1]{Heiti SC Medium}}{}
+  }
+}
 
 % 目录样式（使用 ctex 的 \zihao 确保中文字号生效）
 % 一级目录：黑体，四号；二级及以下：黑体，小四
@@ -124,9 +133,8 @@
 % 链接颜色与引文样式在文档开始时统一覆盖
 \AtBeginDocument{
   \makeatletter
-  \expandafter\def\csname bibstyle@GBT7714-2005\endcsname{\NAT@numbers}
-  \expandafter\def\csname bibstyle@GBT7714-2005NLang\endcsname{\NAT@numbers}
   \makeatother
+  \nocite{gbt7714ctl}
   \hypersetup{
     colorlinks=true,
     linkcolor=black,
