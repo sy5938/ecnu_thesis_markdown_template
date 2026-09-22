@@ -1,5 +1,6 @@
 % ECNU 模板核心设置（供 Quarto PDF 使用）
 
+\usepackage{array}
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{caption}
@@ -113,12 +114,12 @@
 % \dottedcontents 最后一个参数是 \titlerule* 里每个点号重复占用的宽度，
 % 数值越大点号间距越疏（此前 9.5pt 显得像拉长的虚线），改小以获得紧密的点线效果
 \dottedcontents{chapter}[1.5cm]{\addvspace{6pt}\zihao{4}\heiti}{3.8em}{4pt}
-\dottedcontents{section}[1.5cm]{\zihao{-4}\heiti}{2.8em}{4pt}
-\dottedcontents{subsection}[1.5cm]{\zihao{-4}\heiti}{3.8em}{4pt}
+\dottedcontents{section}[1.5cm]{\zihao{-4}\heiti}{1.6em}{4pt}
+\dottedcontents{subsection}[2.1cm]{\zihao{-4}\heiti}{2.3em}{4pt}
 
 % 图表目录样式：宋体，小四
-\dottedcontents{figure}[1.5cm]{\zihao{-4}}{5em}{4pt}
-\dottedcontents{table}[1.5cm]{\zihao{-4}}{5em}{4pt}
+\dottedcontents{figure}[1.5cm]{\zihao{-4}}{2.4em}{4pt}
+\dottedcontents{table}[1.5cm]{\zihao{-4}}{2.4em}{4pt}
 
 % 去除图表目录中不同章节间的额外间距
 \CTEXsetup[lofskip=0pt, lotskip=0pt]{chapter}

@@ -5,6 +5,8 @@ project:
     - fig/**
     - resources/**
     - references.bib
+    - gbt7714-ecnu.bst
+    - gbt7714ctl.bib
 
 book:
   title: "ECNU_thesis_xxx"
@@ -22,7 +24,9 @@ book:
     - chapters/appendix-tables.qmd
 
 lang: zh
-bibliography: references.bib
+bibliography:
+  - "gbt7714ctl.bib"
+  - "references.bib"
 suppress-bibliography: true
 
 format:
@@ -36,7 +40,7 @@ format:
     colorlinks: true
     cite-method: natbib
     natbiboptions: "authoryear,round"
-    biblio-style: gbt7714-author-year
+    biblio-style: gbt7714-ecnu
     include-in-header:
       - tex/preamble.tex
     include-before-body: tex/before-body.tex

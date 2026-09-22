@@ -9,5 +9,5 @@
   \global\let\bibliography\bibliographynoop
 }
 \renewcommand{\bibsection}{}
-\bibliography{references.bib}
+\bibliography{gbt7714ctl.bib,references.bib}
 ```

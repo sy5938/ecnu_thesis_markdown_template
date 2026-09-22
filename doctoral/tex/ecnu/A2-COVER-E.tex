@@ -22,31 +22,18 @@ xxxxxxxxxxx
     {\fontspec{Times New Roman}\fontsize{16.4pt}{24pt}\selectfont\bfseries \thesisETitle}\\
 \end{center}
 
-\vskip 2cm {\sihao\bfseries
+\vskip 2cm {\sihao
         \begin{center}
-            \begin{tabular}{l}
-                Department:         \\
-                Major:              \\
-                Research Field: \\
-                Candidate:         \\
-                Supervisor:
-            \end{tabular}
-            \begin{tabular}{p{8.5cm}}
+            % 用单一表格（而非左右两个独立 tabular）保证标签与内容逐行同步：
+            % 内容较长换行时（如院系全称）两列会一起增高，不会错位
+            \renewcommand\arraystretch{1.15}
+            \begin{tabular}{l >{\centering\arraybackslash}p{8.5cm}}
             % 盲审需要注释下面一些信息，注意页面上的学号是否需要注释
-
-                \strut\\
-                \hline \strut\\
-                \hline \strut\\
-                \hline \strut\\
-                \hline \strut\\
-
-                % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-
-                \hline
+                \bfseries Department: & xxx \\ \cline{2-2}
+                \bfseries Major: & xxx \\ \cline{2-2}
+                \bfseries Research Field: & xxx \\ \cline{2-2}
+                \bfseries Candidate: & xxx \\ \cline{2-2}
+                \bfseries Supervisor: & xxx \\ \cline{2-2}
             \end{tabular}
         \end{center}}
 

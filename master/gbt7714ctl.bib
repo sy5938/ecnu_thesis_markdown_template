@@ -1,0 +1,18 @@
+% gbt7714-ecnu.bst 控制条目（不是文献，不会出现在参考文献列表中）。
+% 已启用的选项：
+%   CTL_year_before_title = false — 年份从作者后移到期刊/出版者后（ECNU 格式）
+%   CTL_bib_punct = half         — 所有条目统一使用半角（英文）标点
+%                                  可选值：GB（全角/中文标点）、half（半角）、bylanguage（按语言）
+%   CTL_doi = false              — 隐藏 DOI
+%   CTL_url = false              — 隐藏 URL
+%   CTL_urldate = false          — 隐藏访问日期
+% 其他可用选项（取消注释即可启用）：
+%   CTL_slash = {false}          — 禁用析出文献的 // 分隔符（如 [C]//）
+%   CTL_entry_type_id = {false}  — 隐藏文献类型标识（如 [J]、[M]、[C]）
+@gbt7714bstctl{gbt7714ctl,
+  CTL_year_before_title = {false},
+  CTL_bib_punct = {half},
+  CTL_doi = {false},
+  CTL_url = {false},
+  CTL_urldate = {false},
+}

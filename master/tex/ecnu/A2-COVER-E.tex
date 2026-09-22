@@ -19,39 +19,26 @@
 \vskip 3cm
 
 \begin{center}
-    {\fontsize{16pt}{24pt}\selectfont\bfseries \rmfamily \thesisETitle}\\
+    {\fontspec{Times New Roman}\fontsize{16.4pt}{24pt}\selectfont\bfseries \thesisETitle}\\
 \end{center}
 
-\vskip 2cm {\sihao\bfseries
+\vskip 2cm {\sihao
         \begin{center}
-            \begin{tabular}{l}
-                Department:         \\
-                Major:              \\
-                Research Field: \\
-                Candidate:         \\
-                Supervisor:
-            \end{tabular}
-            \begin{tabular}c
-           		% 盲审需要注释下面一些信息，注意页面上的学号是否需要注释
-
-                School of Ecological and Environmental Sciences\\
-                \hline Ecology\\
-                \hline Community Ecology\\
-                \hline ~\\
-                \hline ~\\
-
-                % ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~        \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-                % \hline ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\
-
-                \hline
+            % 用单一表格（而非左右两个独立 tabular）保证标签与内容逐行同步：
+            % 内容较长换行时（如院系全称）两列会一起增高，不会错位
+            \renewcommand\arraystretch{1.15}
+            \begin{tabular}{l >{\centering\arraybackslash}p{8.5cm}}
+            % 盲审需要注释下面一些信息，注意页面上的学号是否需要注释
+                \bfseries Department: & School of Ecological and Environmental Sciences \\ \cline{2-2}
+                \bfseries Major: & Ecology \\ \cline{2-2}
+                \bfseries Research Field: & Community Ecology \\ \cline{2-2}
+                \bfseries Candidate: & ~ \\ \cline{2-2}
+                \bfseries Supervisor: & ~ \\ \cline{2-2}
             \end{tabular}
         \end{center}}
 
-\vskip 30mm
+\vfill
 
 \begin{center}
-    {\Large June 10, 2026}
+    {\fontspec{Times New Roman}\fontsize{16pt}{20pt}\selectfont June 10, 2026}
 \end{center}
